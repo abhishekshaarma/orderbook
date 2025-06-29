@@ -357,7 +357,19 @@ public:
     OrderbookLevelInfos GetOrderInfos() const
     {
         LevelInfos bidsInfos, askInfos;
-        bidInfos.reserve(orders)
+        bidInfos.reserve(orders_,size());
+        askInfos.reserve(orders_,size());
+
+        auto CreateLevelInfos = [](Price price, const OrderPointers & orders)
+        {
+            return LevelInfo{price, std::accumuate(order.begin(), order.end(),
+                                                   (Quantity)0 ,
+                [](std::size_t runningSum, const OrderPointer& order)
+                {return runningSum + order->GetRemaningQuantity(); })} ;
+            
+        };
+        for (const auto& [price, orders] : bids_)
+            
     }
     
     
