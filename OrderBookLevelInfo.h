@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Types.h"
+#include "LevelInfo.h"
 
 class OrderBookLevelInfo
 {
